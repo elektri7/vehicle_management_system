@@ -18,12 +18,21 @@ class Vehicle:
         self._fuel_tank_capacity = fuel_tank_capacity
         self._current_fuel_level = fuel_tank_capacity
 
-
-    def refuel(self):
+    def refuel(self, amount: float) -> None:
         """
         Заправка транспортного средства.
         """
-        pass
+        if amount <= 0:
+            print('Ошибка: количество топлива должно быть положительным.')
+            return
+        if amount + self._current_fuel_level > self._fuel_tank_capacity:
+            print('Ошибка: превышение вместимости топливного бака.')
+            return
+        self._current_fuel_level += amount
+        print(
+            f'Заправлено {amount} л. '
+            f'Текущий уровень: {self._current_fuel_level} л.'
+        )
 
     def display_info(self):
         """
