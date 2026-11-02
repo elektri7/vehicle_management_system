@@ -13,7 +13,7 @@ class Vehicle:
     """
     Базовый класс для транспортных средств.
     """
-    def __init__(self, name: str, fuel_tank_capacity: int):
+    def __init__(self, name: str, fuel_tank_capacity: float):
         self._name = name
         self._fuel_tank_capacity = fuel_tank_capacity
         self._current_fuel_level = fuel_tank_capacity
@@ -43,28 +43,67 @@ class Vehicle:
         )
 
 
-class Car:
+class Car(Vehicle):
     """
     Класс для представления автомобиля.
     Наследует от Vehicle.
     """
-    pass
+    def __init__(
+            self, name: str,
+            fuel_tank_capacity: float,
+            fuel_consumption_per_100km: float
+    ):
+        super().__init__(name, fuel_tank_capacity)
+        self._fuel_consumption_per_100km = fuel_consumption_per_100km
+
+    @validate_fuel_consumption
+    def calculate_fuel_consumption(self, distance: float) -> float | None:
+        """Рассчитать расход топлива для поездки."""
+        consumption = (distance / 100.0) * self._fuel_consumptiom_per_100km
+        print(f'Расход на {distance} км: {consumption:.2f} л.')
+        return consumption
 
 
-class Airplane:
+class Airplane(Vehicle):
     """
     Класс для представления самолёта.
     Наследует от Vehicle.
     """
-    pass
+    def __init__(
+            self, name: str,
+            fuel_tank_capacity: float,
+            fuel_consumption_per_hour: float
+    ):
+        super().__init__(name, fuel_tank_capacity)
+        self._fuel_consumption_per_hour = fuel_consumption_per_hour
+
+    @validate_fuel_consumption
+    def calculate_fuel_consumption(self, flight_time: float) -> float | None:
+        """Рассчитать расход топлива для полёта за заданное время."""
+        consumption = flight_time * self._fuel_consumption_per_hour
+        print(f'Расход за {flight_time} ч: {consumption:.2f} л.')
+        return consumption
 
 
-class Boat:
+class Boat(Vehicle):
     """
     Класс для представления катера.
     Наследует от Vehicle.
     """
-    pass
+    def __init__(
+            self, name: str,
+            fuel_tank_capacity: float,
+            fuel_consumption_per_hour: float
+    ):
+        super().__init__(name, fuel_tank_capacity)
+        self._fuel_consumption_per_hour = fuel_consumption_per_hour
+
+    @validate_fuel_consumption
+    def calculate_fuel_consumption(self, travel_time: float) -> float | None:
+        """Рассчитать расход топлива для поездки."""
+        consumption = travel_time * self._fuel_consumption_per_hour
+        print(f'Расход за {travel_time} ч: {consumption:.2f} л.')
+        return consumption
 
 
 # Создание объектов
