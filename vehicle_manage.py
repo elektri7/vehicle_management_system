@@ -34,11 +34,13 @@ class Vehicle:
             f'Текущий уровень: {self._current_fuel_level} л.'
         )
 
-    def display_info(self):
-        """
-        Отображает основную информацию о транспортном средстве.
-        """
-        pass
+    def display_info(self) -> None:
+        """Отображает основную информацию о транспортном средстве."""
+        print(
+            f'Название: {self._name}, '
+            f'Вместимость бака: {self._fuel_tank_capacity} л, '
+            f'Текущий уровень топлива: {self._current_fuel_level} л.'
+        )
 
 
 class Car:
