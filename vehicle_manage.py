@@ -80,7 +80,7 @@ class Car(Vehicle):
     @validate_fuel_consumption
     def calculate_fuel_consumption(self, distance: float) -> float | None:
         """Рассчитать расход топлива для поездки."""
-        consumption = (distance / 100.0) * self._fuel_consumptiom_per_100km
+        consumption = (distance / 100.0) * self._fuel_consumption_per_100km
         print(f"Расход на {distance} км: {consumption:.2f} л.")
         return consumption
 
